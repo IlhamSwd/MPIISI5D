@@ -5,21 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_daftar_belanja/services/shopping_service.dart';
 
-
-
 class ShoppingListScreen extends StatefulWidget {
   const ShoppingListScreen({super.key});
-
 
   @override
   State<ShoppingListScreen> createState() => _ShoppingListScreenState();
 }
 
-
 class _ShoppingListScreenState extends State<ShoppingListScreen> {
   final TextEditingController _controller = TextEditingController();
   final ShoppingService _shoppingService = ShoppingService();
-
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +84,3 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
     );
   }
 }
-
-
-
-
