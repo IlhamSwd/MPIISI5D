@@ -8,6 +8,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+  bool _isPasswordVisible = false;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,19 +23,35 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(
           children: [
             const SizedBox(height: 32),
-            TextField(
+            TextFormField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                 labelText: 'Email',
                 border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email)
               ),
+              validator: (value) {
+                      if (value == null ||
+                          value.isEmpty ||
+                          !_isValidEmail(value)) {
+                        return 'Please Enter a valid Email';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+
             ),
             const SizedBox(height: 16),
-            TextField(
+            TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.lock),
+                
               ),
-              obscureText: true,
+              obscureText: _isPasswordVisible,
             ),
             const SizedBox(height: 16),
             ElevatedButton(onPressed: () {}, child: const Text('Sign In')),
